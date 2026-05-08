@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin Revera | Mechanical Engineer</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0d0d; --bg2: #141414; --bg3: #1c1c1c;
+  --brd: rgba(255,255,255,0.08); --brd2: rgba(255,255,255,0.14);
+  --txt: #f0ede8; --mut: #888780;
+  --acc: #5DCAA5;
+  --tag-bg: rgba(29,158,117,0.12); --tag: #5DCAA5;
+  --ip: #EF9F27; --ip-bg: rgba(239,159,39,0.12);
+  --sl: #AFA9EC; --sl-bg: rgba(175,169,236,0.12);
+}
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt); font-size: 15px; line-height: 1.6; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,13,13,0.9); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--brd); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.nav-name { font-size: 15px; font-weight: 500; color: var(--txt); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { font-size: 13px; color: var(--mut); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--txt); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 2rem 4rem; }
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 56px; border-bottom: 0.5px solid var(--brd); margin-bottom: 4rem; }
+.eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--acc); font-weight: 500; margin-bottom: 1rem; }
+.name { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; color: var(--txt); margin-bottom: 1.25rem; }
+.tagline { font-size: 16px; color: var(--mut); max-width: 520px; line-height: 1.7; margin-bottom: 2rem; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { padding: 9px 20px; border-radius: 7px; font-size: 13px; font-weight: 500; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: opacity 0.2s; }
+.btn-p { background: var(--acc); color: #04342C; border: none; }
+.btn-p:hover { opacity: 0.85; }
+.btn-o { background: transparent; color: var(--txt); border: 0.5px solid var(--brd2); }
+.btn-o:hover { background: var(--bg3); }
+.sec { margin-bottom: 4rem; }
+.sec-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mut); font-weight: 500; margin-bottom: 1.75rem; display: flex; align-items: center; gap: 12px; }
+.sec-label::after { content: ''; flex: 1; height: 0.5px; background: var(--brd); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--brd); border: 0.5px solid var(--brd); border-radius: 12px; overflow: hidden; }
+.card { background: var(--bg2); display: flex; flex-direction: column; transition: background 0.18s; }
+.card:hover { background: var(--bg3); }
+
+/* ==== SLIDESHOW ==== */
+.slideshow { width: 100%; height: 180px; background: var(--bg3); border-bottom: 0.5px solid var(--brd); position: relative; overflow: hidden; }
+.slides { display: flex; height: 100%; transition: transform 0.35s ease; }
+.slide { min-width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; overflow: hidden; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slide-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 100%; }
+.slide-placeholder .ph-icon { font-size: 28px; opacity: 0.18; }
+.slide-placeholder .ph-name { font-size: 10px; color: var(--mut); font-family: monospace; letter-spacing: 0.04em; }
+.ss-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(13,13,13,0.75); border: 0.5px solid var(--brd2); color: var(--txt); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; z-index: 2; opacity: 0; transition: opacity 0.2s; }
+.slideshow:hover .ss-btn { opacity: 1; }
+.ss-prev { left: 8px; }
+.ss-next { right: 8px; }
+.ss-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 2; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: background 0.2s; }
+.dot.active { background: var(--acc); }
+/* ==== END SLIDESHOW ==== */
+
+.card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.65rem; flex: 1; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.card-title { font-size: 15px; font-weight: 500; letter-spacing: -0.02em; color: var(--txt); }
+.badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 1px; }
+.badge { font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+.bi { background: var(--ip-bg); color: var(--ip); }
+.bs { background: var(--sl-bg); color: var(--sl); }
+.bt { background: rgba(255,255,255,0.06); color: var(--mut); }
+.bl { background: rgba(93,202,165,0.1); color: var(--acc); }
+.desc { font-size: 13px; color: var(--mut); line-height: 1.65; flex: 1; }
+.desc strong { color: rgba(240,237,232,0.78); font-weight: 500; }
+.res { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--txt); padding: 8px 10px; background: rgba(93,202,165,0.07); border-radius: 5px; border-left: 2px solid var(--acc); }
+.tools { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.tag { font-size: 10px; padding: 2px 8px; border-radius: 3px; background: var(--tag-bg); color: var(--tag); font-weight: 500; }
+.sgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.sg { background: var(--bg2); border: 0.5px solid var(--brd); border-radius: 9px; padding: 1.1rem; }
+.sg-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500; margin-bottom: 0.65rem; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--bg3); color: var(--txt); border: 0.5px solid var(--brd2); }
+.agrid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.bio { font-size: 14px; color: var(--mut); line-height: 1.85; }
+.bio p { margin-bottom: 1rem; }
+.clist { display: flex; flex-direction: column; gap: 16px; }
+.ci { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--mut); }
+.ci a { color: var(--acc); text-decoration: none; }
+.ci a:hover { text-decoration: underline; }
+.foot { padding: 2rem 0 0; display: flex; justify-content: space-between; border-top: 0.5px solid var(--brd); margin-top: 4rem; }
+.foot p { font-size: 12px; color: var(--mut); }
+@media (max-width: 640px) { .agrid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Austin Revera</span>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Mechanical Engineering at Auburn University, Graduating August 2026</p>
+    <h1 class="name">Austin<br>Revera</h1>
+    <p class="tagline">Mechanical engineering student with hands-on experience building robots, CNC systems, embedded hardware, and control systems. I like building things that actually work.</p>
+    <div class="btns">
+      <a class="btn btn-p" href="#projects">View Projects</a>
+      <a class="btn btn-o" href="mailto:austinrevera01@gmail.com">austinrevera01@gmail.com</a>
+      <a class="btn btn-o" href="https://www.linkedin.com/in/arevera/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="sec" id="projects">
+    <p class="sec-label">Projects</p>
+    <div class="grid">
+
+      <!-- =============================================
+           BATTLEBOT PHOTOS
+           Put your image files in the images/ folder.
+           Rename them to match the filenames below.
+           Add or remove <div class="slide"> blocks to
+           add or remove photos. Minimum 1, no maximum.
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/battlebot-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/battlebot-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/battlebot-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">BattleBot</h2>
+            <div class="badges"><span class="badge bi">In Progress</span><span class="badge bl">Team Lead</span></div>
+          </div>
+          <p class="desc">Senior design project: a sub $500, sub 12 lb combat robot built to defeat a rival university team. Features a <strong>dual drive system</strong> with an overhead axe weapon. Design complete and currently in the build phase.</p>
+          <div class="tools"><span class="tag">Fusion 360</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           6-AXIS ROBOT ARM PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/robot-arm-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/robot-arm-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/robot-arm-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">6-Axis Robot Arm</h2>
+            <div class="badges"><span class="badge bi">In Progress</span><span class="badge bs">Solo</span></div>
+          </div>
+          <p class="desc">Personal build of a full 6-axis robot arm (XYZ + ABC) using NEMA 23 steppers and 3D printed parts. <strong>Gear differential joints</strong> amplify torque. Currently Arduino based with an ESP32 web interface planned for completion.</p>
+          <div class="tools"><span class="tag">Fusion 360</span><span class="tag">Bambu P1S</span><span class="tag">Python</span><span class="tag">Arduino/ESP32</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           WAAM SLICER PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/waam-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/waam-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/waam-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">WAAM Slicer</h2>
+            <div class="badges"><span class="badge bs">Solo</span></div>
+          </div>
+          <p class="desc">Custom slicer for ICAM's Wire Arc Additive Manufacturing research. Generates a <strong>weaving toolpath pattern</strong> for walls and interior fill. Built in Rhino3D and exports custom G-code for the in-house WAAM printer.</p>
+          <div class="tools"><span class="tag">Rhino3D</span><span class="tag">Python</span><span class="tag">C++</span><span class="tag">Fusion 360</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           MPCNC ROUTER PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/mpcnc-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/mpcnc-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/mpcnc-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">MPCNC Router</h2>
+            <div class="badges"><span class="badge bs">Solo</span></div>
+          </div>
+          <p class="desc">Mostly printed CNC based on the V1E MPCNC design with custom router modifications. Primary use is cutting <strong>topographic formboard maps</strong> of US states using depth from color in Fusion 360.</p>
+          <div class="tools"><span class="tag">Fusion 360</span><span class="tag">ESTLCam</span><span class="tag">Marlin</span><span class="tag">Ender 5 Pro</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           STAIR CLIMBER PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/stairclimber-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/stairclimber-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/stairclimber-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">Stair Climber Robot</h2>
+            <div class="badges"><span class="badge bt">Team</span></div>
+          </div>
+          <p class="desc">Autonomous robot designed to navigate a full staircase, including both concrete and marble stairs.</p>
+          <div class="res"><span>&#10003;</span><span>One of 3 groups to complete the full climb and one of only 2 to conquer the marble stairs in Brown-Kopel</span></div>
+          <div class="tools"><span class="tag">SolidWorks</span><span class="tag">Laser Cutter</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           PONGBOT PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/pongbot-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/pongbot-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/pongbot-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">PongBot</h2>
+            <div class="badges"><span class="badge bt">Team</span></div>
+          </div>
+          <p class="desc">Autonomous robot that rolls a set distance, loads, and launches a ping pong ball into cups 10 feet away. Designed for <strong>high repeatability</strong> with the next version targeting improved alignment hardware.</p>
+          <div class="res"><span>&#10003;</span><span>3 out of 9 successful launches with a fully autonomous sequence</span></div>
+          <div class="tools"><span class="tag">Fusion 360</span><span class="tag">Arduino</span><span class="tag">Bambu P1S</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           DC MOTOR PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/dcmotor-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/dcmotor-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/dcmotor-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">Scratch Built DC Motor</h2>
+            <div class="badges"><span class="badge bt">Team</span></div>
+          </div>
+          <p class="desc">Built a DC motor from raw materials for a class arm wrestling competition. Used a <strong>ferrous core</strong> instead of plastic, trading peak amperage for superior initial torque.</p>
+          <div class="res"><span>&#10003;</span><span>Won the class arm wrestling competition</span></div>
+          <div class="tools"><span class="tag">OMAX Waterjet</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           INVERTED PENDULUM PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/pendulum-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/pendulum-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/pendulum-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">Analog Inverted Pendulum</h2>
+            <div class="badges"><span class="badge bt">Team</span></div>
+          </div>
+          <p class="desc">Purely analog control system using op amps and potentiometers with no microcontrollers to balance an inverted pendulum in under 1 second with less than 5% overshoot.</p>
+          <div class="res"><span>&#10003;</span><span>Met settling time target with overshoot tied to a gain error in the acceleration channel</span></div>
+          <div class="tools"><span class="tag">Op Amps</span><span class="tag">Potentiometers</span></div>
+        </div>
+      </div>
+
+      <!-- =============================================
+           WII BOWLING ROBOT PHOTOS
+           ============================================= -->
+      <div class="card">
+        <div class="slideshow" data-index="0">
+          <div class="slides">
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/wiibowling-1.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/wiibowling-2.jpg</div></div></div>
+            <div class="slide"><div class="slide-placeholder"><div class="ph-icon">&#128247;</div><div class="ph-name">images/wiibowling-3.jpg</div></div></div>
+          </div>
+          <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
+          <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
+          <div class="ss-dots"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h2 class="card-title">Wii Bowling Robot</h2>
+            <div class="badges"><span class="badge bt">Team</span></div>
+          </div>
+          <p class="desc">Automated robot that plays a full game of Wii Bowling unassisted. Camera guidance was intentionally omitted since a strike requires the same motion every time, making <strong>mechanical repeatability the design goal</strong>. Slower ball speed was selected for consistency.</p>
+          <div class="tools"><span class="tag">Fusion 360</span><span class="tag">Bambu P1S</span><span class="tag">Arduino Mega</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sec" id="skills">
+    <p class="sec-label">Skills and Tools</p>
+    <div class="sgrid">
+      <div class="sg"><p class="sg-title">CAD and Design</p><div class="pills"><span class="pill">Fusion 360</span><span class="pill">SolidWorks</span><span class="pill">Rhino3D</span></div></div>
+      <div class="sg"><p class="sg-title">Fabrication</p><div class="pills"><span class="pill">FDM Printing</span><span class="pill">Laser Cutting</span><span class="pill">Waterjet</span><span class="pill">CNC Routing</span></div></div>
+      <div class="sg"><p class="sg-title">Electronics</p><div class="pills"><span class="pill">Arduino</span><span class="pill">ESP32</span><span class="pill">Op Amps</span><span class="pill">Stepper Motors</span></div></div>
+      <div class="sg"><p class="sg-title">Software</p><div class="pills"><span class="pill">Python</span><span class="pill">C++</span><span class="pill">G Code</span><span class="pill">Marlin</span></div></div>
+      <div class="sg"><p class="sg-title">Additive Mfg</p><div class="pills"><span class="pill">Bambu P1S</span><span class="pill">Ender 5 Pro</span><span class="pill">WAAM</span></div></div>
+      <div class="sg"><p class="sg-title">Controls</p><div class="pills"><span class="pill">Analog Control</span><span class="pill">Feedback Systems</span><span class="pill">Kinematics</span></div></div>
+    </div>
+  </div>
+
+  <div class="sec" id="about">
+    <p class="sec-label">About</p>
+    <div class="agrid">
+      <div class="bio">
+        <p>I am a mechanical engineering student at Auburn University graduating in August 2026, with a focus on building things that work: robots, CNC machines, control systems, and additive manufacturing tooling.</p>
+        <p>My projects span university research (WAAM slicer for ICAM), competition builds (BattleBot, DC motor), and personal passion projects (6-axis robot arm, MPCNC). I am drawn to problems that require both hardware and software thinking.</p>
+        <p>Currently seeking full-time opportunities in mechanical or systems engineering starting August 2026.</p>
+      </div>
+      <div>
+        <div class="clist">
+          <div class="ci"><span>&#128231;</span><a href="mailto:austinrevera01@gmail.com">austinrevera01@gmail.com</a></div>
+          <div class="ci"><span>&#128188;</span><a href="https://www.linkedin.com/in/arevera/" target="_blank">linkedin.com/in/arevera</a></div>
+          <div class="ci" style="font-size:13px;">Auburn University, B.S. Mechanical Engineering, August 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p>Austin Revera, Mechanical Engineer</p>
+    <p>Auburn University 2026</p>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.slideshow').forEach(function(ss) {
+  var slides = ss.querySelectorAll('.slide');
+  var dotsEl = ss.querySelector('.ss-dots');
+  slides.forEach(function(_, i) {
+    var d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = (function(idx){ return function(){ goTo(ss, idx); }; })(i);
+    dotsEl.appendChild(d);
+  });
+});
+
+function goTo(ss, idx) {
+  var slides = ss.querySelectorAll('.slide');
+  var n = slides.length;
+  idx = (idx + n) % n;
+  ss.dataset.index = idx;
+  ss.querySelector('.slides').style.transform = 'translateX(-' + (idx * 100) + '%)';
+  ss.querySelectorAll('.dot').forEach(function(d, i) {
+    d.classList.toggle('active', i === idx);
+  });
+}
+
+function shift(btn, dir) {
+  var ss = btn.closest('.slideshow');
+  goTo(ss, parseInt(ss.dataset.index) + dir);
+}
+</script>
+
+</body>
+</html>
