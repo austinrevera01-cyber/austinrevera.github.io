@@ -63,6 +63,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
 .slides { display: flex; height: 100%; transition: transform 0.35s ease; }
 .slide { min-width: 100%; height: 380px; flex-shrink: 0; overflow: hidden; position: relative; }
 .slide img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.slide img.contain { object-fit: contain; background: var(--bg3); }
 .slide-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 100%; }
 .slide-placeholder .ph-icon { font-size: 28px; opacity: 0.18; }
 .slide-placeholder .ph-name { font-size: 10px; color: var(--mut); font-family: monospace; letter-spacing: 0.04em; }
@@ -127,9 +128,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
         <p class="tagline">Mechanical engineering student with hands-on experience building robots, CNC systems, embedded hardware, and control systems.</p>
         <div class="btns">
           <a class="btn btn-p" href="#projects">View Projects</a>
-          <a class="btn btn-o" href="resume.pdf" download>Download Resume</a>
+          <a class="btn btn-o" href="Austin%20Revera%20Resume.pdf" download>Download Resume</a>
           <a class="btn btn-o" href="mailto:austinrevera01@gmail.com">Email</a>
-          <a class="btn btn-o" href="https://www.linkedin.com/in/arevera/" target="_blank">LinkedIn</a>
+          <a class="btn btn-o" href="https://linkedin.com/in/arevera" target="_blank">LinkedIn</a>
         </div>
       </div>
       <div class="headshot-wrap">
@@ -140,6 +141,24 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
              Put headshot.jpg in your portfolio folder.
              ============================================= -->
         <img class="headshot" src="headshot.jpg" alt="Austin Revera">
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="about">
+    <p class="sec-label">About</p>
+    <div class="agrid">
+      <div class="bio">
+        <p>I am a mechanical engineering student at Auburn University graduating in August 2026, with experience across robotics, CNC systems, control systems, and additive manufacturing.</p>
+        <p>My projects span university research (WAAM slicer for ICAM), competition builds (BattleBot, DC motor), and personal passion projects (6-axis robot arm, MPCNC). I am drawn to problems that require both hardware and software thinking.</p>
+        <p>Currently seeking full-time opportunities in mechanical or systems engineering starting August 2026.</p>
+      </div>
+      <div>
+        <div class="clist">
+          <div class="ci"><span>&#128231;</span><a href="mailto:austinrevera01@gmail.com">austinrevera01@gmail.com</a></div>
+          <div class="ci"><span>&#128188;</span><a href="https://linkedin.com/in/arevera" target="_blank">linkedin.com/in/arevera</a></div>
+          <div class="ci" style="font-size:13px;">Auburn University, B.S. Mechanical Engineering, August 2026</div>
+        </div>
       </div>
     </div>
   </div>
@@ -158,9 +177,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="Full%20Assembly.png"></div>
-            <div class="slide"><img src="Drivetrain.png"></div>
-            <div class="slide"><img src="Electrical%20Diagram.png"></div>
+            <div class="slide"><img class="contain" src="Full%20Assembly.png"></div>
+            <div class="slide"><img class="contain" src="Drivetrain.png"></div>
+            <div class="slide"><img class="contain" src="Electrical%20Diagram.png"></div>
           </div>
           <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
           <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
@@ -182,7 +201,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="Robot%20Wrist%20Joint.jpg"></div>
+            <div class="slide"><img class="contain" src="Robot%20Wrist%20Joint.jpg"></div>
             <div class="slide"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/hu-BL41csDc" frameborder="0" allowfullscreen></iframe></div>
           </div>
           <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
@@ -227,8 +246,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="MPCNC.jpg"></div>
-            <div class="slide"><img src="MPCNCO.jpg"></div>
+            <div class="slide"><img class="contain" src="MPCNC.jpg"></div>
+            <div class="slide"><img class="contain" src="MPCNCO.jpg"></div>
             <div class="slide"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Gg5MeNPnIR4" frameborder="0" allowfullscreen></iframe></div>
             <div class="slide"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/2k_Pw8aQceI" frameborder="0" allowfullscreen></iframe></div>
           </div>
@@ -264,7 +283,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
             <div class="badges"><span class="badge bt">Team</span></div>
           </div>
           <p class="desc">Autonomous robot designed to navigate a full staircase, including both concrete and marble stairs.</p>
-          <div class="res"><span>&#10003;</span><span>One of 3 groups to complete the full climb and one of only 2 to conquer the marble stairs in Brown-Kopel</span></div>
+          <div class="res"><span>&#10003;</span><span>One of 3 groups to complete the full stair climb, including [X] concrete stairs and [X] marble stairs</span></div>
           <div class="tools"><span class="tag">SolidWorks</span><span class="tag">Laser Cutter</span></div>
         </div>
       </div>
@@ -275,9 +294,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="Ping%20pong%20launcher.jpg"></div>
-            <div class="slide"><img src="Size%20fit.jpg"></div>
-            <div class="slide"><img src="undercarrage.jpg"></div>
+            <div class="slide"><img class="contain" src="Ping%20pong%20launcher.jpg"></div>
+            <div class="slide"><img class="contain" src="Size%20fit.jpg"></div>
+            <div class="slide"><img class="contain" src="undercarrage.jpg"></div>
           </div>
           <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
           <button class="ss-btn ss-next" onclick="shift(this,1)">&#8250;</button>
@@ -300,7 +319,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="DC%20Motor.jpg"></div>
+            <div class="slide"><img class="contain" src="DC%20Motor.jpg"></div>
             <div class="slide"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/ucNKCyvw8Vk" frameborder="0" allowfullscreen></iframe></div>
           </div>
           <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
@@ -324,7 +343,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="Analog%20Wiring.jpg"></div>
+            <div class="slide"><img class="contain" src="Analog%20Wiring.jpg"></div>
             <div class="slide"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/QjZmaBQCSUs" frameborder="0" allowfullscreen></iframe></div>
           </div>
           <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
@@ -348,7 +367,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="card">
         <div class="slideshow" data-index="0">
           <div class="slides">
-            <div class="slide"><img src="Wii%20Bowling%20Final%20Stepup.jpg"></div>
+            <div class="slide"><img class="contain" src="Wii%20Bowling%20Final%20Stepup.jpg"></div>
             <div class="slide"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/VDwROfNZ0Sw" frameborder="0" allowfullscreen></iframe></div>
           </div>
           <button class="ss-btn ss-prev" onclick="shift(this,-1)">&#8249;</button>
@@ -360,7 +379,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
             <h2 class="card-title">Wii Bowling Robot</h2>
             <div class="badges"><span class="badge bt">Team</span></div>
           </div>
-          <p class="desc">Automated robot that plays a full game of Wii Bowling unassisted. Camera guidance was intentionally omitted since a strike requires the same motion every time, making mechanical repeatability the design goal. Slower ball speed was selected for consistency.</p>
+          <p class="desc">Automated robot that plays a full game of Wii Bowling unassisted. The system was designed around mechanical repeatability since consistent ball delivery is the key to a successful throw. Camera guidance was omitted by design and slower ball speed was selected for greater consistency.</p>
           <div class="tools"><span class="tag">Fusion 360</span><span class="tag">Bambu P1S</span><span class="tag">Arduino Mega</span></div>
         </div>
       </div>
@@ -377,24 +396,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba
       <div class="sg"><p class="sg-title">Software</p><div class="pills"><span class="pill">Python</span><span class="pill">C++</span><span class="pill">G Code</span><span class="pill">Marlin</span></div></div>
       <div class="sg"><p class="sg-title">Additive Mfg</p><div class="pills"><span class="pill">Bambu P1S</span><span class="pill">Ender 5 Pro</span><span class="pill">WAAM</span></div></div>
       <div class="sg"><p class="sg-title">Controls</p><div class="pills"><span class="pill">Analog Control</span><span class="pill">Feedback Systems</span><span class="pill">Kinematics</span></div></div>
-    </div>
-  </div>
-
-  <div class="sec" id="about">
-    <p class="sec-label">About</p>
-    <div class="agrid">
-      <div class="bio">
-        <p>I am a mechanical engineering student at Auburn University graduating in August 2026, with a focus on robots, CNC machines, control systems, and additive manufacturing tooling.</p>
-        <p>My projects span university research (WAAM slicer for ICAM), competition builds (BattleBot, DC motor), and personal passion projects (6-axis robot arm, MPCNC). I am drawn to problems that require both hardware and software thinking.</p>
-        <p>Currently seeking full-time opportunities in mechanical or systems engineering starting August 2026.</p>
-      </div>
-      <div>
-        <div class="clist">
-          <div class="ci"><span>&#128231;</span><a href="mailto:austinrevera01@gmail.com">austinrevera01@gmail.com</a></div>
-          <div class="ci"><span>&#128188;</span><a href="https://www.linkedin.com/in/arevera/" target="_blank">linkedin.com/in/arevera</a></div>
-          <div class="ci" style="font-size:13px;">Auburn University, B.S. Mechanical Engineering, August 2026</div>
-        </div>
-      </div>
     </div>
   </div>
 
